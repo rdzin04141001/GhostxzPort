@@ -411,6 +411,21 @@
       border-bottom: 1px solid rgba(255,255,255,0.2);
     }
 
+  
+
+    .review img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-right: 10px;
+      vertical-align: middle;
+    }
+
+    .review strong {
+      margin-left: 5px;
+    }
+
   </style>
 </head>
 <body>
@@ -469,6 +484,7 @@
 
     <div class="review-form">
       <input type="text" id="nick" placeholder="Seu nick">
+      <input type="file" id="profile" accept="image/*">
       <select id="stars">
         <option value="5">★★★★★</option>
         <option value="4">★★★★</option>
@@ -564,24 +580,65 @@
     }
 
     // REVIEWS SYSTEM
+    function saveReviews(data) {
+      localStorage.setItem('reviews', JSON.stringify(data));
+    }
+
+    function loadReviews() {
+      const saved = localStorage.getItem('reviews');
+      if (!saved) return [];
+      return JSON.parse(saved);
+    }
+
+    function renderReviews() {
+      const list = document.getElementById('reviewsList');
+      list.innerHTML = '';
+      const reviews = loadReviews();
+
+      reviews.forEach(r => {
+        const div = document.createElement('div');
+        div.className = 'review';
+        div.innerHTML = `
+          <img src="${r.img}">
+          <strong>${r.nick}</strong> - ${'★'.repeat(r.stars)}<br>
+          <span>${r.desc}</span>
+        `;
+        list.appendChild(div);
+      });
+    }
+
     function addReview() {
       const nick = document.getElementById('nick').value || 'Anônimo';
       const stars = document.getElementById('stars').value;
       const desc = document.getElementById('desc').value;
+      const file = document.getElementById('profile').files[0];
 
-      if(desc.trim() === '') return;
+      if (desc.trim() === '') return;
 
-      const reviewHTML = `
-        <div class="review">
-          <strong>${nick}</strong> - ${'★'.repeat(stars)}<br>
-          <span>${desc}</span>
-        </div>
-      `;
+      const reader = new FileReader();
 
-      document.getElementById('reviewsList').innerHTML += reviewHTML;
+      reader.onload = function(e) {
+        const img = e.target.result || '';
 
-      document.getElementById('desc').value = '';
+        const reviews = loadReviews();
+        reviews.push({ nick, stars, desc, img });
+
+        saveReviews(reviews);
+        renderReviews();
+
+        document.getElementById('desc').value = '';
+        document.getElementById('profile').value = '';
+      };
+
+      if (file) {
+        reader.readAsDataURL(file);
+      } else {
+        reader.onload({ target: { result: '' } });
+      }
     }
+
+    // carregar ao abrir
+    renderReviews();
 
   </script>
 
