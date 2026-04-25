@@ -363,6 +363,54 @@
       text-shadow: 0 0 10px rgba(157,0,255,0.5);
     }
 
+  
+
+    /* REVIEWS */
+    .reviews {
+      position: relative;
+      z-index: 2;
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 20px;
+      border: 1px solid rgba(157,0,255,0.4);
+      border-radius: 12px;
+      background: rgba(157,0,255,0.08);
+      box-shadow: 0 0 15px rgba(157,0,255,0.4);
+    }
+
+    .reviews h2 {
+      text-align: center;
+      margin-bottom: 15px;
+      text-shadow: 0 0 10px #9d00ff;
+    }
+
+    .review-form input, .review-form textarea, .review-form select {
+      width: 100%;
+      margin: 5px 0;
+      padding: 8px;
+      border-radius: 6px;
+      border: none;
+      outline: none;
+    }
+
+    .review-form button {
+      margin-top: 10px;
+      padding: 8px;
+      width: 100%;
+      background: #9d00ff;
+      border: none;
+      color: black;
+      border-radius: 8px;
+      cursor: pointer;
+      box-shadow: 0 0 10px #c77dff;
+    }
+
+    .review {
+      margin-top: 15px;
+      padding: 10px;
+      border-bottom: 1px solid rgba(255,255,255,0.2);
+    }
+
   </style>
 </head>
 <body>
@@ -406,7 +454,7 @@
   <section class="gallery">
     <div class="build" data-desc="Uma sala com iluminação e cosméticos realistas."><img src="https://i.imgur.com/qfsVFjK.png" alt="Build 1"><span>Casa realista com iluminação realista</span></div>
     <div class="build" data-desc="A sala de segurança básica de FNAF com uma ótima iluminação, mas poucos detalhes."><img src="https://i.imgur.com/rl650H9.png" alt="Build 2"><span>Sala de segurança FNAF</span></div>
-    <div class="build"><img src="" alt=""><span>Build #3</span></div>
+    <div class="build" data-desc="Floresta que fiz para cliente custou 8 reais por ser uma build simples"><img src="https://i.imgur.com/x4fMr6d.png" alt="Build 3"><span>Floresta roxa para jogo de RPG</span></div>
     <div class="build"><img src="" alt=""><span>Build #4</span></div>
     <div class="build"><img src="" alt=""><span>Build #5</span></div>
     <div class="build"><img src="" alt=""><span>Build #6</span></div>
@@ -414,6 +462,25 @@
     <div class="build"><img src="" alt=""><span>Build #8</span></div>
     <div class="build"><img src="" alt=""><span>Build #9</span></div>
     <div class="build"><img src="" alt=""><span>Build #10</span></div>
+  </section>
+
+  <section class="reviews">
+    <h2>Avaliações</h2>
+
+    <div class="review-form">
+      <input type="text" id="nick" placeholder="Seu nick">
+      <select id="stars">
+        <option value="5">★★★★★</option>
+        <option value="4">★★★★</option>
+        <option value="3">★★★</option>
+        <option value="2">★★</option>
+        <option value="1">★</option>
+      </select>
+      <textarea id="desc" placeholder="Sua avaliação..."></textarea>
+      <button onclick="addReview()">Enviar avaliação</button>
+    </div>
+
+    <div id="reviewsList"></div>
   </section>
 
   <div class="coming-soon">mais coisas em breve</div>
@@ -494,6 +561,26 @@
 
     function closePopup() {
       popup.style.display = 'none';
+    }
+
+    // REVIEWS SYSTEM
+    function addReview() {
+      const nick = document.getElementById('nick').value || 'Anônimo';
+      const stars = document.getElementById('stars').value;
+      const desc = document.getElementById('desc').value;
+
+      if(desc.trim() === '') return;
+
+      const reviewHTML = `
+        <div class="review">
+          <strong>${nick}</strong> - ${'★'.repeat(stars)}<br>
+          <span>${desc}</span>
+        </div>
+      `;
+
+      document.getElementById('reviewsList').innerHTML += reviewHTML;
+
+      document.getElementById('desc').value = '';
     }
 
   </script>
