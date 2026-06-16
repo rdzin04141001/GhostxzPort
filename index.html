@@ -91,6 +91,20 @@ h1 {
 }
 .btns a:hover i { transform: scale(1.1); text-shadow: 0 0 10px var(--accent); }
 
+.btns a.disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    position: relative;
+}
+.btns a.disabled:hover {
+    transform: none;
+    border-color: var(--border);
+    box-shadow: none;
+}
+.btns a.disabled .cs-text { display: none; }
+.btns a.disabled:hover .main-text { display: none; }
+.btns a.disabled:hover .cs-text { display: inline; color: var(--accent); font-family: Orbitron, sans-serif; font-size: 0.85rem; }
+
 .theme-container {
     display: flex; align-items: center; gap: 15px; background: rgba(255,255,255,0.02); 
     padding: 12px 24px; border-radius: 20px; border: 1px solid var(--border);
@@ -164,11 +178,11 @@ footer { text-align: center; padding: 60px; opacity: .4; font-size: 0.9rem; bord
 <p class="subtitle">Builder • VFX • GFX • Creative Developer</p>
 
 <div class="btns">
-<a href="#" target="_blank"><i class="fab fa-discord"></i> Discord</a>
-<a href="#" target="_blank"><i class="fab fa-youtube"></i> YouTube</a>
-<a href="#" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a>
-<a href="#" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
-<a href="#" target="_blank"><i class="fab fa-x-twitter"></i> Twitter/X</a>
+<a href="https://discord.gg/fhZjs4zwBj" target="_blank"><i class="fab fa-discord"></i> Discord</a>
+<a href="https://www.youtube.com/@Ghostxz_Rd" target="_blank"><i class="fab fa-youtube"></i> YouTube</a>
+<a href="https://www.tiktok.com/@ghostxz140" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a>
+<a href="https://www.instagram.com/rdzin041410/" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+<a href="javascript:void(0)" class="disabled"><i class="fab fa-x-twitter"></i> <span class="main-text">Twitter/X</span><span class="cs-text">Coming Soon</span></a>
 </div>
 
 <div class="theme-container">
