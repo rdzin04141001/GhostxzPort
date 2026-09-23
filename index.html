@@ -7,7 +7,7 @@
 <link class="favicon" rel="icon" type="image/jpeg" href="https://m.media-amazon.com/images/I/41yiRqN4FBL._AC_UF894,1000_QL80_.jpg">
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght=500;700;900&family=Poppins:wght=300;400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Poppins:wght@300;400;600&display=swap');
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
 
 :root {
@@ -97,7 +97,7 @@ h1 {
 .btns a.disabled:hover .cs-text { display: inline; color: var(--accent); font-family: Orbitron, sans-serif; font-size: 0.85rem; }
 
 .theme-container {
-    display: flex; align-items: center; gap: 15px; background: rgba(255,255,255,0.02); 
+    display: flex; align-items: center; gap: 15px; background: rgba(255,255,255,0.02);
     padding: 12px 24px; border-radius: 20px; border: 1px solid var(--border);
 }
 .theme-container button { background: none; border: none; font-size: 1.3rem; cursor: pointer; transition: transform 0.2s; }
@@ -224,6 +224,7 @@ footer { text-align: center; padding: 60px; opacity: .4; font-size: 0.9rem; bord
 <div class="title">BUILD</div>
 <div class="line-decor"></div>
 <div class="grid">
+
 <div class="card" onclick="openModal(this)">
     <img src="https://imgur.com/uK1Rqzw.png" alt="Sala de Segurança FNAF" class="card-img">
     <div class="card-content">
@@ -231,21 +232,23 @@ footer { text-align: center; padding: 60px; opacity: .4; font-size: 0.9rem; bord
         <p>apenas a sala de segurança do fnaf</p>
     </div>
 </div>
+
 <div class="card" onclick="openModal(this)">
-    <!-- O LINK ATUALIZADO ABAIXO -->
     <img src="https://i.imgur.com/EUX9v96.png" alt="Uma caverna com uma cachoeira" class="card-img">
     <div class="card-content">
         <h3>Uma caverna com uma cachoeira</h3>
         <p>uma caverna realista com uma cachoeira realista (meio quadrada kkk)</p>
     </div>
 </div>
+
 <div class="card" onclick="openModal(this)">
-    <img src="https://i.imgur.com/qBsIVvO.png" alt="Casinha japonesa" class="card-img">
+    <img src="https://imgur.com/n378Ut8" alt="Casinha japonesa" class="card-img">
     <div class="card-content">
         <h3>Casinha japonesa</h3>
         <p>apenas uma casa japonesa em uma floresta aleatoria:D</p>
     </div>
 </div>
+
 </div>
 </section>
 
@@ -260,8 +263,27 @@ footer { text-align: center; padding: 60px; opacity: .4; font-size: 0.9rem; bord
 </div>
 </section>
 
-<section id="vfx"><div class="title">VFX</div><div class="line-decor"></div><div class="card" onclick="openModal(this)"><div class="card-content" style="padding: 40px;"><h3>VFX</h3><p>🚧 COMING SOON</p></div></div></section>
-<section id="gfx"><div class="title">GFX</div><div class="line-decor"></div><div class="card" onclick="openModal(this)"><div class="card-content" style="padding: 40px;"><h3>GFX</h3><p>🚧 COMING SOON</p></div></div></section>
+<section id="vfx">
+<div class="title">VFX</div>
+<div class="line-decor"></div>
+<div class="card" onclick="openModal(this)">
+<div class="card-content" style="padding: 40px;">
+<h3>VFX</h3>
+<p>🚧 COMING SOON</p>
+</div>
+</div>
+</section>
+
+<section id="gfx">
+<div class="title">GFX</div>
+<div class="line-decor"></div>
+<div class="card" onclick="openModal(this)">
+<div class="card-content" style="padding: 40px;">
+<h3>GFX</h3>
+<p>🚧 COMING SOON</p>
+</div>
+</div>
+</section>
 
 <section id="ia">
 <div class="title">Assistente IA</div>
@@ -298,9 +320,13 @@ function theme(c){
     document.getElementById('customColor').value = c;
     localStorage.setItem('accent', c);
 }
-const s=localStorage.getItem('accent'); if(s) theme(s); else theme('#ffffff');
+
+const s=localStorage.getItem('accent');
+if(s) theme(s);
+else theme('#ffffff');
 
 const cur=document.getElementById('cursor');
+
 document.addEventListener('mousemove',e=>{
     cur.style.left=e.clientX+'px';
     cur.style.top=e.clientY+'px';
@@ -308,6 +334,7 @@ document.addEventListener('mousemove',e=>{
 
 const audio = document.getElementById('bgm');
 const musicBtn = document.getElementById('musicBtn');
+
 function toggleMusic() {
     if (audio.paused) {
         audio.play().catch(e => console.log("Interação necessária."));
@@ -319,6 +346,7 @@ function toggleMusic() {
 }
 
 /* MODAL JAVASCRIPT CONTROLLERS */
+
 function openModal(cardElement) {
     const modal = document.getElementById('projectModal');
     const modalImg = document.getElementById('modalImg');
@@ -329,11 +357,9 @@ function openModal(cardElement) {
     const cardTitle = cardElement.querySelector('h3').innerText;
     const cardDescription = cardElement.querySelector('p').innerText;
 
-    // Atualiza título e descrição no modal
     modalTitle.innerText = cardTitle;
     modalDesc.innerText = cardDescription;
 
-    // Se o card tiver imagem, exibe ela no modal. Senão, esconde o espaço da imagem.
     if (cardImage) {
         modalImg.src = cardImage.src;
         modalImg.style.display = 'block';
@@ -341,8 +367,8 @@ function openModal(cardElement) {
         modalImg.style.display = 'none';
     }
 
-    // Abre o pop-up com animação de fade-in
     modal.style.display = 'flex';
+
     setTimeout(() => {
         modal.classList.add('active');
     }, 10);
@@ -350,14 +376,15 @@ function openModal(cardElement) {
 
 function forceCloseModal() {
     const modal = document.getElementById('projectModal');
+
     modal.classList.remove('active');
+
     setTimeout(() => {
         modal.style.display = 'none';
     }, 300);
 }
 
 function closeModal(event) {
-    // Fecha apenas se clicar na parte escura (fora da caixa de conteúdo)
     if (event.target.id === 'projectModal') {
         forceCloseModal();
     }
@@ -366,9 +393,9 @@ function closeModal(event) {
 function ask() {
     let q = document.getElementById('q').value.toLowerCase().trim();
     let answerDiv = document.getElementById('answer');
-    
+
     if(!q) return;
-    
+
     answerDiv.innerText = "Analisando dados...";
 
     const bancoDeDados = {
@@ -468,18 +495,18 @@ function ask() {
     };
 
     let respostaEncontrada = null;
-    
+
     for (let chave in bancoDeDados) {
         if (q.includes(chave)) {
             respostaEncontrada = bancoDeDados[chave];
             break;
         }
     }
-    
+
     if (!respostaEncontrada) {
         respostaEncontrada = "Não consegui identificar sua pergunta com precisão. Tente usar termos simples como 'oi', 'pix', 'robux', 'horario', 'prazo', 'valores' ou 'build'.";
     }
-    
+
     setTimeout(() => {
         answerDiv.innerText = respostaEncontrada;
     }, 250);
@@ -487,7 +514,14 @@ function ask() {
 
 const p=document.getElementById('particles'),ctx=p.getContext('2d');
 const l=document.getElementById('lines'),ctx2=l.getContext('2d');
-function rs(){p.width=l.width=innerWidth;p.height=l.height=innerHeight} rs(); onresize=rs;
+
+function rs(){
+    p.width=l.width=innerWidth;
+    p.height=l.height=innerHeight
+}
+
+rs();
+onresize=rs;
 
 let pts=[...Array(65)].map(()=>({
     x:Math.random()*innerWidth,
@@ -499,31 +533,42 @@ let pts=[...Array(65)].map(()=>({
 function anim(){
     ctx.clearRect(0,0,p.width,p.height);
     ctx2.clearRect(0,0,l.width,l.height);
-    
+
     let currentAccent = getComputedStyle(document.documentElement).getPropertyValue('--accent').trim();
 
     for(let i=0; i<pts.length; i++){
         let a = pts[i];
-        a.x+=a.vx; a.y+=a.vy;
+
+        a.x+=a.vx;
+        a.y+=a.vy;
+
         if(a.x<0||a.x>innerWidth)a.vx*=-1;
         if(a.y<0||a.y>innerHeight)a.vy*=-1;
-        
+
         ctx.fillStyle = currentAccent;
-        ctx.beginPath(); ctx.arc(a.x,a.y,1.5,0,6.28); ctx.fill();
-        
+        ctx.beginPath();
+        ctx.arc(a.x,a.y,1.5,0,6.28);
+        ctx.fill();
+
         for(let j=i+1; j<pts.length; j++){
             let b = pts[j];
             let d = Math.hypot(a.x-b.x,a.y-b.y);
+
             if(d<110){
                 ctx2.strokeStyle = currentAccent;
-                ctx2.globalAlpha = (1 - d/110) * 0.15; 
-                ctx2.beginPath(); ctx2.moveTo(a.x,a.y); ctx2.lineTo(b.x,b.y); ctx2.stroke();
+                ctx2.globalAlpha = (1 - d/110) * 0.15;
+                ctx2.beginPath();
+                ctx2.moveTo(a.x,a.y);
+                ctx2.lineTo(b.x,b.y);
+                ctx2.stroke();
             }
         }
     }
+
     ctx2.globalAlpha = 1;
     requestAnimationFrame(anim);
 }
+
 anim();
 </script>
 </body>
